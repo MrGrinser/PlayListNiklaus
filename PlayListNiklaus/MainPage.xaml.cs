@@ -7,7 +7,6 @@ namespace PlayListNiklaus
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
         }
     }
 }
