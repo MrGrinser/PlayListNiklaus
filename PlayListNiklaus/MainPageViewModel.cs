@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using Microsoft.Maui.Graphics;
 
+
 namespace PlayListNiklaus
 {
     public class MainPageViewModel : BindableObject
@@ -101,7 +102,17 @@ namespace PlayListNiklaus
         {
             Albums = new ObservableCollection<Album>
             {
-                new Album { Title = "Ace of Spades", Artist = "Motörhead", CoverImage = "heavymetall.png" },
+                new Album
+        {
+            Title = "Ace of Spades",
+            Artist = "Motörhead",
+            CoverImage = "heavymetall.png",
+            Songs = new ObservableCollection<Song>
+            {
+                new Song { Title = "Ace of Spades", Duration = "2:47" },
+                new Song { Title = "Love Me Like a Reptile", Duration = "3:23" }
+            }
+        },
                 new Album { Title = "Classical Masterpieces", Artist = "Beethoven", CoverImage = "beet.png" },
                 new Album { Title = "News of the World", Artist = "Queen", CoverImage = "green.png" },
                 new Album { Title = "Infinite", Artist = "Eminem", CoverImage = "hiphop1.png" },
@@ -137,6 +148,11 @@ namespace PlayListNiklaus
             MainContentBackgroundColor = IsDarkMode ? Colors.Black : Colors.White;
         }
     }
+    public class Song : BindableObject
+    {
+        public string Title { get; set; }
+        public string Duration { get; set; }
+    }
 
     public class Album : BindableObject
     {
@@ -145,6 +161,7 @@ namespace PlayListNiklaus
         public string Title { get; set; }
         public string Artist { get; set; }
         public string CoverImage { get; set; }
+        public ObservableCollection<Song> Songs { get; set; } // Add this line
 
         public bool IsSelected
         {
@@ -157,6 +174,11 @@ namespace PlayListNiklaus
                     OnPropertyChanged();
                 }
             }
+        }
+
+        public Album()
+        {
+            Songs = new ObservableCollection<Song>(); // Initialize the Songs collection
         }
     }
 
