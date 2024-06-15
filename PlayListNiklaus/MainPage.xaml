@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlayListNiklaus.MainPage"
+             xmlns:local="clr-namespace:PlayListNiklaus">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <StackLayout Grid.Column="0" BackgroundColor="#f72585" Padding="10">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="logo.png" HorizontalOptions="Center" HeightRequest="50"/>
+                <Label Text="m-note"
+                       FontSize="24"
+                       FontFamily="Aero"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       Margin="10"
+                       TextColor="White"/>
+            </StackLayout>
+            <Label Text="Playlists" 
+            FontSize="24" 
+            FontFamily="Aero"
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="Center"      
+            Margin="10,50,10,10"></Label>
+
+            <Button Text="Home" Margin="10"/>
+            <Button Text="Playlists" Margin="10"/>
+            <Button Text="Settings" Margin="10"/>
+            <Button Text="About" Margin="10"/>
+        </StackLayout>
+
+        <!-- Main Content Area -->
+        <StackLayout Grid.Column="1" BackgroundColor="White" Padding="10">
+            <Label Text="Albums" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="20"/>
+
+            <!-- CollectionView for displaying albums in a grid -->
+            <CollectionView ItemsSource="{Binding Albums}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="4" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding CoverImage}" HeightRequest="100" WidthRequest="100" Grid.Column="0"/>
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Title}" FontSize="16"/>
+                                <Label Text="{Binding Artist}" FontSize="14" TextColor="Gray"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
