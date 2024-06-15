@@ -19,11 +19,11 @@
             <StackLayout Orientation="Horizontal">
                 <Image Source="logo.png" HorizontalOptions="Center" HeightRequest="50"/>
                 <Label Text="m-note"
-                       FontSize="24"
+                       FontSize="20"
                        FontFamily="Aero"
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="Center"
-                       Margin="10"
+                       Margin="5"
                        TextColor="White"/>
             </StackLayout>
             <Label Text="Playlists" 
@@ -43,7 +43,7 @@
         <StackLayout Grid.Column="1" BackgroundColor="{Binding MainContentBackgroundColor}" Padding="10">
             <!-- Switcher for changing background color -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Start" Margin="10">
-                <Label Text="Dark Mode" VerticalOptions="Center" Margin="0,0,10,0"/>
+                <Label Text="Dark Mode" VerticalOptions="Center" Margin="0,0,10,0" TextColor="#3a0ca3"/>
                 <Switch IsToggled="{Binding IsDarkMode}" />
             </StackLayout>
 
@@ -51,7 +51,8 @@
                    FontSize="24" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Start" 
-                   Margin="20"/>
+                   Margin="20"
+                   TextColor="#f72585"/>
 
             <!-- SearchBar for filtering albums -->
             <SearchBar Placeholder="Search albums or artists"
@@ -60,7 +61,9 @@
                        Margin="10"/>
 
             <!-- CollectionView for displaying albums in a grid -->
-            <CollectionView ItemsSource="{Binding FilteredAlbums}">
+            <CollectionView ItemsSource="{Binding FilteredAlbums}"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedAlbum}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="4" />
                 </CollectionView.ItemsLayout>
@@ -73,13 +76,14 @@
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding CoverImage}" HeightRequest="100" WidthRequest="100" Grid.Column="0"/>
                             <StackLayout Grid.Column="1" VerticalOptions="Center">
-                                <Label Text="{Binding Title}" FontSize="16"/>
+                                <Label Text="{Binding Title}" FontSize="16" TextColor="#f72585"/>
                                 <Label Text="{Binding Artist}" FontSize="14" TextColor="Gray"/>
                             </StackLayout>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </StackLayout>
     </Grid>
 </ContentPage>
