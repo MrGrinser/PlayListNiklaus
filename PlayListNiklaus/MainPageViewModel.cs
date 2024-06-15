@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Microsoft.Maui.Graphics;
 
 
+
 namespace PlayListNiklaus
 {
     public class MainPageViewModel : BindableObject
@@ -95,7 +96,10 @@ namespace PlayListNiklaus
 
         private void OnAlbumSelected(Album selectedAlbum)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new AlbumPage { BindingContext = new AlbumPageViewModel(selectedAlbum) });
+            Application.Current.MainPage.Navigation.PushAsync(new AlbumPage
+            {
+                BindingContext = new AlbumPageViewModel(selectedAlbum, MainContentBackgroundColor)
+            });
         }
 
         private void LoadMockAlbums()
@@ -184,11 +188,32 @@ namespace PlayListNiklaus
 
     public class AlbumPageViewModel : BindableObject
     {
-        public Album SelectedAlbum { get; }
+        private Album _selectedAlbum;
+        public Album SelectedAlbum
+        {
+            get { return _selectedAlbum; }
+            set
+            {
+                _selectedAlbum = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public AlbumPageViewModel(Album selectedAlbum)
+        private Color _background;
+        public Color Background
+        {
+            get { return _background; }
+            set
+            {
+                _background = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public AlbumPageViewModel(Album selectedAlbum, Color mainContentBackgroundColor)
         {
             SelectedAlbum = selectedAlbum;
+            Background = mainContentBackgroundColor;
         }
     }
 }
