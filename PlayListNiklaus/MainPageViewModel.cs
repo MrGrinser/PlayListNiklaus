@@ -8,6 +8,27 @@ namespace PlayListNiklaus
 {
     public class MainPageViewModel : BindableObject
     {
+        private string _email;
+        private string _subscriptionStatus;
+        public string SubscriptionStatus
+        {
+            get { return _subscriptionStatus; }
+            set
+            {
+                _subscriptionStatus = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            }
+        }
+        public ICommand SubscribeCommand { get; }
         private ObservableCollection<Album> _albums;
         public ObservableCollection<Album> Albums
         {
@@ -89,6 +110,7 @@ namespace PlayListNiklaus
             IsDarkMode = false;
             UpdateBackgroundColor();
             AlbumSelectedCommand = new Command<Album>(OnAlbumSelected);
+            SubscribeCommand = new Command(Subscribe);
 
             Genres = new ObservableCollection<string>
             {
@@ -101,8 +123,36 @@ namespace PlayListNiklaus
             };
             SelectedGenre = "All";
         }
+        private void Subscribe()
+        {
+            // Implement your subscription logic here
+            // For example, you can send the email to your backend service
+            // or perform any other necessary actions.
+            // Example:
+            if (RegexUtilities.IsValidEmail(Email))
+            {
+                SubscriptionStatus = $"Successfully subscribed with {Email}";
+                // Reset email field
+                Email = string.Empty;
 
-        private Album _selectedAlbum;
+                // Show popup or message box
+                ShowSubscriptionPopup();
+            }
+            else
+            {
+                // Handle case where email is empty or invalid
+                SubscriptionStatus = "Please enter a valid email address.";
+            }
+        }
+        private void ShowSubscriptionPopup()
+        {
+            // You can use a platform-specific service or MAUI's built-in mechanisms to show a popup
+            // For MAUI:
+            Application.Current.MainPage.DisplayAlert("Subscription Successful", $"Successfully subscribed with {Email}", "OK");
+        }
+    
+
+    private Album _selectedAlbum;
         public Album SelectedAlbum
         {
             get { return _selectedAlbum; }
@@ -124,7 +174,7 @@ namespace PlayListNiklaus
                 BindingContext = new AlbumPageViewModel(selectedAlbum, MainContentBackgroundColor)
             });
         }
-
+   
         private void LoadMockAlbums()
         {
             Albums = new ObservableCollection<Album>
