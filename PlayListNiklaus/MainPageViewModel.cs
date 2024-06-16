@@ -50,6 +50,16 @@ namespace PlayListNiklaus
                 OnPropertyChanged();
             }
         }
+        private ObservableCollection<Playlist> _playlists;
+        public ObservableCollection<Playlist> Playlists
+        {
+            get { return _playlists; }
+            set
+            {
+                _playlists = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _searchQuery;
         public string SearchQuery
@@ -103,13 +113,17 @@ namespace PlayListNiklaus
         public ICommand SearchCommand { get; }
         public ICommand AlbumSelectedCommand { get; }
 
+        public ICommand PlaylistSelectedCommand { get; }
+
         public MainPageViewModel()
         {
             LoadMockAlbums();
+            LoadMockPlaylists();
             SearchCommand = new Command(FilterAlbums);
             IsDarkMode = false;
             UpdateBackgroundColor();
             AlbumSelectedCommand = new Command<Album>(OnAlbumSelected);
+            PlaylistSelectedCommand = new Command<Playlist>(OnPlaylistSelected);
             SubscribeCommand = new Command(Subscribe);
 
             Genres = new ObservableCollection<string>
@@ -166,7 +180,14 @@ namespace PlayListNiklaus
                 }
             }
         }
+        private void OnPlaylistSelected(Playlist selectedPlaylist)
+        {
 
+            Application.Current.MainPage.Navigation.PushAsync(new PlaylistPage
+            {
+                BindingContext = new PlaylistPageViewModel(selectedPlaylist, MainContentBackgroundColor)
+            });
+        }
         private void OnAlbumSelected(Album selectedAlbum)
         {
             Application.Current.MainPage.Navigation.PushAsync(new AlbumPage
@@ -174,7 +195,37 @@ namespace PlayListNiklaus
                 BindingContext = new AlbumPageViewModel(selectedAlbum, MainContentBackgroundColor)
             });
         }
-   
+
+     
+        private void LoadMockPlaylists()
+        {
+            Playlists = new ObservableCollection<Playlist>
+            {
+                new Playlist
+                {
+                   Title = "Workout",
+                    Songs = new ObservableCollection<Song>
+                    {
+                        new Song { Title = "Eye of the Tiger", Duration = "4:05" },
+                        new Song { Title = "Lose Yourself", Duration = "5:21" },
+                        new Song { Title = "We Will Rock You", Duration = "2:58" }
+                    }
+                },
+                new Playlist
+                {
+                   Title = "Relax",
+                    Songs = new ObservableCollection<Song>
+                    {
+                        new Song { Title = "Take It Easy", Duration = "3:45" },
+                        new Song { Title = "Lovely Day", Duration = "4:18" },
+                        new Song { Title = "Sunny", Duration = "3:50" }
+                    }
+                }
+            };
+
+            
+        }
+
         private void LoadMockAlbums()
         {
             Albums = new ObservableCollection<Album>
