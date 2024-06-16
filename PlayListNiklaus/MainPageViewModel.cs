@@ -29,6 +29,7 @@ namespace PlayListNiklaus
             }
         }
         public ICommand SubscribeCommand { get; }
+        public ICommand NavigateToCreatePlaylistCommand { get; private set; }
         private ObservableCollection<Album> _albums;
         public ObservableCollection<Album> Albums
         {
@@ -125,6 +126,8 @@ namespace PlayListNiklaus
             AlbumSelectedCommand = new Command<Album>(OnAlbumSelected);
             PlaylistSelectedCommand = new Command<Playlist>(OnPlaylistSelected);
             SubscribeCommand = new Command(Subscribe);
+        
+
 
             Genres = new ObservableCollection<string>
             {
@@ -137,6 +140,7 @@ namespace PlayListNiklaus
             };
             SelectedGenre = "All";
         }
+     
         private void Subscribe()
         {
             // Implement your subscription logic here

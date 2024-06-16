@@ -27,6 +27,7 @@
                        Margin="5"
                        TextColor="White"/>
             </StackLayout>
+            
             <Label Text="Playlists" 
                    FontSize="24" 
                    FontFamily="Aero"
@@ -41,6 +42,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Button Text="{Binding Title}" 
+                                
                                 Command="{Binding BindingContext.PlaylistSelectedCommand, Source={x:Reference mainPage}}"
                                 CommandParameter="{Binding .}"
                                 Margin="10"/>

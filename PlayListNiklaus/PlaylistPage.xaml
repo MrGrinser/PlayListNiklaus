@@ -31,12 +31,13 @@
                    Margin="5"
                    TextColor="White"/>
             </StackLayout>
-            <Label Text="Playlists" 
-                   FontSize="24" 
-                   FontFamily="Aero"
-                   HorizontalOptions="CenterAndExpand" 
-                   VerticalOptions="Center"      
-                   Margin="10,50,10,10"/>
+            <Label Text="Home" 
+       FontSize="24" 
+       FontFamily="Aero"
+       HorizontalOptions="CenterAndExpand" 
+       VerticalOptions="Center"      
+       Margin="10,50,10,10"/>
+           
 
             <!-- CollectionView for playlists -->
             <CollectionView ItemsSource="{Binding Playlists}" SelectionMode="Single">
