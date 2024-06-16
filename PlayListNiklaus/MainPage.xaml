@@ -43,9 +43,21 @@
         <!-- Main Content Area -->
         <StackLayout Grid.Column="1" BackgroundColor="{Binding MainContentBackgroundColor}" Padding="10">
             <!-- Switcher for changing background color -->
-            <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Start" Margin="10">
-                <Label Text="Dark Mode" VerticalOptions="Center" Margin="0,0,10,0" TextColor="#3a0ca3"/>
-                <Switch IsToggled="{Binding IsDarkMode}" />
+            <!-- Picker for selecting genre -->
+            <StackLayout Orientation="Horizontal" Margin="10">
+                <Picker ItemsSource="{Binding Genres}"
+                HorizontalOptions="Start"
+       
+                SelectedItem="{Binding SelectedGenre}"
+                Title="Select Genre"
+                TitleColor="#3a0ca3"
+                MaximumWidthRequest="300"
+                TextColor="#3a0ca3"
+                Margin="40,0,0,0"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Start">
+                    <Label Text="Dark Mode" VerticalOptions="Center" TextColor="#3a0ca3"/>
+                    <Switch IsToggled="{Binding IsDarkMode}"/>
+                 </StackLayout>
             </StackLayout>
 
             <Label Text="Albums" 
@@ -60,7 +72,6 @@
                        Text="{Binding SearchQuery, Mode=TwoWay}"
                        SearchCommand="{Binding SearchCommand}"
                        Margin="10"/>
-
             <!-- CollectionView for displaying albums in a grid -->
             <CollectionView ItemsSource="{Binding FilteredAlbums}"
                 SelectionMode="Single"
@@ -84,7 +95,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </StackLayout>
     </Grid>
 </ContentPage>
