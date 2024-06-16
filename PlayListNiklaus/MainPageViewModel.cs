@@ -107,26 +107,148 @@ namespace PlayListNiklaus
             Albums = new ObservableCollection<Album>
             {
                 new Album
+                {
+                    Title = "Ace of Spades",
+                    Artist = "Motörhead",
+                    CoverImage = "heavymetall.png",
+                    Genre = "HeavyMetall",
+                    Songs = new ObservableCollection<Song>
+                    {
+                        new Song { Title = "Ace of Spades", Duration = "2:47" },
+                        new Song { Title = "Love Me Like a Reptile", Duration = "3:23" },
+                        new Song { Title = "Live to win", Duration = "3:36" }
+                    }
+                },
+                new Album { 
+                    Title = "Classical Masterpieces", 
+                    Artist = "Beethoven", 
+                    CoverImage = "beet.png",
+                    Genre = "Classical Music",
+                    Songs = new ObservableCollection<Song>
+                    {
+                        new Song { Title = "9. Sinfonie", Duration = "2:47" },
+                        new Song { Title = "5. Sinfonie", Duration = "3:23" },
+                        new Song { Title = "2. Sinfonie", Duration = "3:36" }
+                    }
+                },
+                new Album { Title = "News of the World", 
+                    Artist = "Queen", 
+                    CoverImage = "green.png",
+                    Genre = "Rock",
+                    Songs = new ObservableCollection<Song>
+                    {
+                        new Song { Title = "All Dead, All Dead", Duration = "3:10" },
+                        new Song { Title = "We Will Rock You", Duration = "2:02" },
+                        new Song { Title = "Spread Your Wings", Duration = "4:35" }
+                    }
+                },
+                new Album
+    {
+        Title = "Infinite",
+        Artist = "Eminem",
+        CoverImage = "hiphop1.png",
+        Genre = "Hip Hop",
+        Songs = new ObservableCollection<Song>
         {
-            Title = "Ace of Spades",
-            Artist = "Motörhead",
-            CoverImage = "heavymetall.png",
-            Songs = new ObservableCollection<Song>
-            {
-                new Song { Title = "Ace of Spades", Duration = "2:47" },
-                new Song { Title = "Love Me Like a Reptile", Duration = "3:23" }
-            }
-        },
-                new Album { Title = "Classical Masterpieces", Artist = "Beethoven", CoverImage = "beet.png" },
-                new Album { Title = "News of the World", Artist = "Queen", CoverImage = "green.png" },
-                new Album { Title = "Infinite", Artist = "Eminem", CoverImage = "hiphop1.png" },
-                new Album { Title = "Encore", Artist = "Eminem", CoverImage = "hiphop2.png" },
-                new Album { Title = "Louis Under the Stars", Artist = "Louis Armstrong", CoverImage = "jazz.png" },
-                new Album { Title = "Recovery", Artist = "Eminem", CoverImage = "hiphop3.png" },
-                new Album { Title = "A Kind of Magic", Artist = "Queen", CoverImage = "rock.png" },
-                new Album { Title = "Beethoven Piano Music", Artist = "Beethoven", CoverImage = "piano.png" },
-                new Album { Title = "The Game", Artist = "Queen", CoverImage = "rock2.png" }
-            };
+            new Song { Title = "Infinite", Duration = "4:00" },
+            new Song { Title = "Rap God", Duration = "6:04" },
+            new Song { Title = "Lose Yourself", Duration = "5:26" },
+            new Song { Title = "Stan", Duration = "6:44" }
+        }
+    },
+
+    new Album
+    {
+        Title = "Encore",
+        Artist = "Eminem",
+        CoverImage = "hiphop2.png",
+        Genre = "Hip Hop",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "Mockingbird", Duration = "4:10" },
+            new Song { Title = "Without Me", Duration = "4:50" },
+            new Song { Title = "Sing for the Moment", Duration = "5:40" },
+            new Song { Title = "Like Toy Soldiers", Duration = "5:24" }
+        }
+    },
+
+    new Album
+    {
+        Title = "Louis Under the Stars",
+        Artist = "Louis Armstrong",
+        CoverImage = "jazz.png",
+        Genre = "Jazz",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "What a Wonderful World", Duration = "2:21" },
+            new Song { Title = "La Vie En Rose", Duration = "3:25" },
+            new Song { Title = "When You're Smiling", Duration = "4:03" },
+            new Song { Title = "Dream a Little Dream of Me", Duration = "3:15" }
+        }
+    },
+
+    new Album
+    {
+        Title = "Recovery",
+        Artist = "Eminem",
+        CoverImage = "hiphop3.png",
+        Genre = "Hip Hop",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "Not Afraid", Duration = "4:08" },
+            new Song { Title = "Love the Way You Lie (feat. Rihanna)", Duration = "4:23" },
+            new Song { Title = "No Love (feat. Lil Wayne)", Duration = "4:59" },
+            new Song { Title = "Space Bound", Duration = "4:38" },
+            new Song { Title = "Cold Wind Blows", Duration = "5:04" }
+        }
+    },
+
+    new Album
+    {
+        Title = "A Kind of Magic",
+        Artist = "Queen",
+        CoverImage = "rock.png",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "A Kind of Magic", Duration = "4:24" },
+            new Song { Title = "Princes of the Universe", Duration = "3:32" },
+            new Song { Title = "Friends Will Be Friends", Duration = "4:08" },
+            new Song { Title = "One Vision", Duration = "4:03" },
+            new Song { Title = "Who Wants to Live Forever", Duration = "5:15" }
+        }
+    },
+
+    new Album
+    {
+        Title = "Beethoven Piano Music",
+        Artist = "Beethoven",
+        CoverImage = "piano.png",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "Für Elise", Duration = "2:55" },
+            new Song { Title = "Moonlight Sonata", Duration = "5:17" },
+            new Song { Title = "Pathétique Sonata", Duration = "7:55" },
+            new Song { Title = "Ode to Joy", Duration = "4:20" }
+        }
+    },
+
+    new Album
+    {
+        Title = "The Game",
+        Artist = "Queen",
+        CoverImage = "rock2.png",
+        Genre = "Rock",
+        Songs = new ObservableCollection<Song>
+        {
+            new Song { Title = "Play the Game", Duration = "3:33" },
+            new Song { Title = "Another One Bites the Dust", Duration = "3:35" },
+            new Song { Title = "Save Me", Duration = "3:48" },
+            new Song { Title = "Crazy Little Thing Called Love", Duration = "2:44" },
+            new Song { Title = "Dragon Attack", Duration = "4:18" },
+            new Song { Title = "Under Pressure", Duration = "4:03" }
+        }
+    }
+};
 
             FilteredAlbums = new ObservableCollection<Album>(Albums);
         }
@@ -150,70 +272,6 @@ namespace PlayListNiklaus
         private void UpdateBackgroundColor()
         {
             MainContentBackgroundColor = IsDarkMode ? Colors.Black : Colors.White;
-        }
-    }
-    public class Song : BindableObject
-    {
-        public string Title { get; set; }
-        public string Duration { get; set; }
-    }
-
-    public class Album : BindableObject
-    {
-        private bool _isSelected;
-
-        public string Title { get; set; }
-        public string Artist { get; set; }
-        public string CoverImage { get; set; }
-        public ObservableCollection<Song> Songs { get; set; } // Add this line
-
-        public bool IsSelected
-        {
-            get { return _isSelected; }
-            set
-            {
-                if (_isSelected != value)
-                {
-                    _isSelected = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public Album()
-        {
-            Songs = new ObservableCollection<Song>(); // Initialize the Songs collection
-        }
-    }
-
-    public class AlbumPageViewModel : BindableObject
-    {
-        private Album _selectedAlbum;
-        public Album SelectedAlbum
-        {
-            get { return _selectedAlbum; }
-            set
-            {
-                _selectedAlbum = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Color _background;
-        public Color Background
-        {
-            get { return _background; }
-            set
-            {
-                _background = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public AlbumPageViewModel(Album selectedAlbum, Color mainContentBackgroundColor)
-        {
-            SelectedAlbum = selectedAlbum;
-            Background = mainContentBackgroundColor;
         }
     }
 }
