@@ -1,71 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace PlayListNiklaus
+public class AlbumPageViewModel : BindableObject
 {
-    public class AlbumPageViewModel : BindableObject
+    private Album _selectedAlbum;
+    private Song _selectedSong;
+    private bool _isSongSelected;
+
+    public AlbumPageViewModel(Album album, Color background)
     {
-        private Album _selectedAlbum;
-        public Album SelectedAlbum
-        {
-            get { return _selectedAlbum; }
-            set
-            {
-                _selectedAlbum = value;
-                OnPropertyChanged();
-            }
-        }
+        SelectedAlbum = album;
+        Background = background;
+        SongSelectedCommand = new Command<Song>(OnSongSelected);
+    }
 
-        private Color _background;
-        public Color Background
+    public Album SelectedAlbum
+    {
+        get => _selectedAlbum;
+        set
         {
-            get { return _background; }
-            set
-            {
-                _background = value;
-                OnPropertyChanged();
-            }
+            _selectedAlbum = value;
+            OnPropertyChanged();
         }
-        private Song _selectedSong;
-        public Song SelectedSong
-        {
-            get { return _selectedSong; }
-            set
-            {
-                _selectedSong = value;
-                OnPropertyChanged();
-                IsSongSelected = _selectedSong != null;
-            }
-        }
+    }
 
-        private bool _isSongSelected;
-        public bool IsSongSelected
+    public Song SelectedSong
+    {
+        get => _selectedSong;
+        set
         {
-            get { return _isSongSelected; }
-            set
-            {
-                _isSongSelected = value;
-                OnPropertyChanged();
-            }
+            _selectedSong = value;
+            OnPropertyChanged();
         }
+    }
 
-        public ICommand SongSelectedCommand { get; }
-
-        public AlbumPageViewModel(Album selectedAlbum, Color mainContentBackgroundColor )
+    public bool IsSongSelected
+    {
+        get => _isSongSelected;
+        set
         {
-            SelectedAlbum = selectedAlbum;
-            Background = mainContentBackgroundColor;
-            SongSelectedCommand = new Command<Song>(OnSongSelected);
+            _isSongSelected = value;
+            OnPropertyChanged();
         }
-        private void OnSongSelected(Song selectedSong)
-        {
-            SelectedSong = selectedSong;
-        }
+    }
 
+    public ICommand SongSelectedCommand { get; }
+
+    public Color Background { get; }
+
+    private void OnSongSelected(Song song)
+    {
+        SelectedSong = song;
+        IsSongSelected = true;
+
+        // Update the IsSelected property for each song
+        foreach (var s in SelectedAlbum.Songs)
+        {
+            s.IsSelected = s == song;
+        }
     }
 }
-
