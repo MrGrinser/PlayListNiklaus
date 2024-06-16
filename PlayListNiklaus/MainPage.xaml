@@ -27,6 +27,7 @@
                        Margin="5"
                        TextColor="White"/>
             </StackLayout>
+            
             <Label Text="Playlists" 
                    FontSize="24" 
                    FontFamily="Aero"
@@ -34,9 +35,21 @@
                    VerticalOptions="Center"      
                    Margin="10,50,10,10"/>
 
-            <Button Text="Playlist1" Margin="10"/>
-            <Button Text="Playlist2" Margin="10"/>
-            <Button Text="Playlist3" Margin="10"/>
+            <CollectionView ItemsSource="{Binding Playlists}" SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Text="{Binding Title}" 
+                                
+                                Command="{Binding BindingContext.PlaylistSelectedCommand, Source={x:Reference mainPage}}"
+                                CommandParameter="{Binding .}"
+                                Margin="10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </StackLayout>
 
         <!-- Main Content Area -->

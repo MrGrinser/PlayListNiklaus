@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlayListNiklaus.AlbumPage"
-             x:Name="albumPage">
+             x:Class="PlayListNiklaus.PlaylistPage"
+             x:Name="playlistPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,43 +32,47 @@
                    TextColor="White"/>
             </StackLayout>
             <Label Text="Home" 
-                   FontSize="24" 
-                   FontFamily="Aero"
-                   HorizontalOptions="CenterAndExpand" 
-                   VerticalOptions="Center"      
-                   Margin="10,50,10,10"/>
+       FontSize="24" 
+       FontFamily="Aero"
+       HorizontalOptions="CenterAndExpand" 
+       VerticalOptions="Center"      
+       Margin="10,50,10,10"/>
+           
+
+            <!-- CollectionView for playlists -->
+            <CollectionView ItemsSource="{Binding Playlists}" SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Text="{Binding Title}" 
+                                Command="{Binding BindingContext.PlaylistSelectedCommand, Source={x:Reference playlistPage}}"
+                                CommandParameter="{Binding .}"
+                                Margin="10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
 
         <!-- Main Content Area -->
-        <StackLayout Grid.Row="0" Grid.Column="1" BackgroundColor="#7209b7" Orientation="Horizontal">
+        <StackLayout Grid.Row="0" Grid.Column="1" BackgroundColor="#7209b7" Orientation="Horizontal" Padding="100">
             <!-- StackLayout for labels -->
             <StackLayout HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding SelectedAlbum.Title}"
+                <Label Text="{Binding SelectedPlaylist.Title}"
                        Margin="0,20,0,0"
                        TextColor="#f72585"
                        FontSize="24"
                        HorizontalOptions="Center"
                        VerticalOptions="Start"/>
 
-                <Label Text="{Binding SelectedAlbum.Artist}"
-                       FontSize="20"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Start"
-                       TextColor="Gray"
-                       Margin="0,5,0,10"/>
-            </StackLayout>
 
-            <!-- Image -->
-            <Image Source="{Binding SelectedAlbum.CoverImage}"
-                   HorizontalOptions="End"
-                   WidthRequest="150"
-                   HeightRequest="250"
-                   Margin="0, -15"/>
+            </StackLayout>
         </StackLayout>
 
         <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding Background}">
             <!-- Content for row 1, column 1 -->
-            <CollectionView ItemsSource="{Binding SelectedAlbum.Songs}" Margin="0,35,0,0">
+            <CollectionView ItemsSource="{Binding SelectedPlaylist.Songs}" Margin="0,35,0,0">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -78,7 +82,7 @@
                             <StackLayout Orientation="Horizontal" Padding="10">
                                 <Label Text="{Binding Title}" FontSize="16" Margin="150,0,15,0" TextColor="#7209b7">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SongSelectedCommand, Source={x:Reference albumPage}}" CommandParameter="{Binding .}"/>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SongSelectedCommand, Source={x:Reference playlistPage}}" CommandParameter="{Binding .}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                                 <Label Text="{Binding Duration}" FontSize="16" TextColor="Gray" Margin="30,0,150,0" HorizontalOptions="EndAndExpand"/>
