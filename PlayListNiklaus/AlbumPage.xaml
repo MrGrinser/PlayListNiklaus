@@ -101,8 +101,10 @@
         </StackLayout>
 
         <!-- Black bar at the bottom -->
-        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Black" Padding="10" IsVisible="{Binding IsSongSelected}">
-            <Label Text="{Binding SelectedSong.Title}" TextColor="White" FontSize="16"/>
+        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#7209b7" Padding="10" IsVisible="{Binding IsSongSelected}" Orientation="Horizontal">
+            <Image Source="play.png" MaximumWidthRequest="25" Margin="0,0,0,0"></Image>
+            <Label Text="{Binding SelectedSong.Title}" TextColor="White" FontSize="16" HorizontalOptions="CenterAndExpand"/>
+            <Image Source="replay.png" MaximumWidthRequest="25" Margin="0,0,0,0"></Image>
         </StackLayout>
     </Grid>
 </ContentPage>
